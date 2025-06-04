@@ -94,19 +94,23 @@ jobs:
           type=sha,prefix={{branch}}-
           type=raw,value=latest,enable={{is_default_branch}}
 
+    - name: Create Redis Dockerfile
+      run: |
+        cat > Dockerfile.redis << 'EOF'
+        FROM redis:8.0.2
+        LABEL org.opencontainers.image.source=https://github.com/${{ github.repository }}
+        LABEL org.opencontainers.image.description="Redis server for Illumio Yelb demo"
+        LABEL maintainer="Illumio"
+        EOF
+
     - name: Build and push Redis image
       uses: docker/build-push-action@v5
       with:
+        context: .
+        file: ./Dockerfile.redis
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-        build-args: |
-          BUILDPLATFORM=linux/amd64
         cache-from: type=gha
         cache-to: type=gha,mode=max
-        file: |
-          FROM redis:8.0.2
-          LABEL org.opencontainers.image.source=https://github.com/${{ github.repository }}
-          LABEL org.opencontainers.image.description="Redis server for Illumio Yelb demo"
-          LABEL maintainer="Illumio"
