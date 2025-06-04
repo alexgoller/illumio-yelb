@@ -4,10 +4,24 @@
 
 replicaCount: 1
 
-image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+# Illumio-branded Yelb images
+images:
+  ui:
+    repository: ghcr.io/alexgoller/illumio-yelb/yelb-ui
+    tag: latest
+    pullPolicy: IfNotPresent
+  appserver:
+    repository: ghcr.io/alexgoller/illumio-yelb/yelb-appserver
+    tag: latest
+    pullPolicy: IfNotPresent
+  db:
+    repository: ghcr.io/alexgoller/illumio-yelb/yelb-db
+    tag: latest
+    pullPolicy: IfNotPresent
+  redis:
+    repository: ghcr.io/alexgoller/illumio-yelb/redis-server
+    tag: latest
+    pullPolicy: IfNotPresent
 
 service:
   type: LoadBalancer

@@ -34,7 +34,7 @@ export class YelbCdk8s extends Chart {
             containers: [
               {
                 name: 'yelb-ui-container',
-                image: 'mreferre/yelb-ui:0.10',
+                image: 'ghcr.io/alexgoller/illumio-yelb/yelb-ui:latest',
                 ports: [ { containerPort: 80 } ]
               }
             ]
@@ -67,7 +67,7 @@ export class YelbCdk8s extends Chart {
             containers: [
               {
                 name: 'yelb-appserver',
-                image: 'mreferre/yelb-appserver:0.7'
+                image: 'ghcr.io/alexgoller/illumio-yelb/yelb-appserver:latest'
               }
             ]
           }
@@ -100,7 +100,7 @@ export class YelbCdk8s extends Chart {
             containers: [
               {
                 name: 'yelb-db',
-                image: 'mreferre/yelb-db:0.6'
+                image: 'ghcr.io/alexgoller/illumio-yelb/yelb-db:latest'
               }
             ]
           }
@@ -133,7 +133,7 @@ export class YelbCdk8s extends Chart {
             containers: [
               {
                 name: 'redis-server',
-                image: 'redis:4.0.2'
+                image: 'ghcr.io/alexgoller/illumio-yelb/redis-server:latest'
               }
             ]
           }

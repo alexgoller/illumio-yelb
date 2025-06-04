@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  redis-server:
+    image: ghcr.io/alexgoller/illumio-yelb/redis-server:latest
+    container_name: redis-server
+    ports:
+      - "6379:6379"
+    networks:
+      - yelb-network
+
+  yelb-db:
+    image: ghcr.io/alexgoller/illumio-yelb/yelb-db:latest
+    container_name: yelb-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+    networks:
+      - yelb-network
+
+  yelb-appserver:
+    image: ghcr.io/alexgoller/illumio-yelb/yelb-appserver:latest
+    container_name: yelb-appserver
+    ports:
+      - "4567:4567"
+    environment:
+      - RACK_ENV=test
+    depends_on:
+      - redis-server
+      - yelb-db
+    networks:
+      - yelb-network
+
+  yelb-ui:
+    image: ghcr.io/alexgoller/illumio-yelb/yelb-ui:latest
+    container_name: yelb-ui
+    ports:
+      - "8080:80"
+    environment:
+      - UI_ENV=test
+    depends_on:
+      - yelb-appserver
+    networks:
+      - yelb-network
+
+networks:
+  yelb-network:
+    driver: bridge

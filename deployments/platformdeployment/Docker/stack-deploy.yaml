@@ -1,7 +1,7 @@
 version: '3'
 services:
   yelb-ui:
-    image: 'mreferre/yelb-ui:0.10'
+    image: 'ghcr.io/alexgoller/illumio-yelb/yelb-ui:latest'
     depends_on:
       - yelb-appserver
     ports:
@@ -13,7 +13,7 @@ services:
       restart_policy:
         condition: on-failure
   yelb-appserver:
-    image: 'mreferre/yelb-appserver:0.7'
+    image: 'ghcr.io/alexgoller/illumio-yelb/yelb-appserver:latest'
     depends_on:
       - redis-server
       - yelb-db
@@ -24,7 +24,7 @@ services:
       restart_policy:
         condition: on-failure
   redis-server:
-    image: 'redis:4.0.2'
+    image: 'ghcr.io/alexgoller/illumio-yelb/redis-server:latest'
     networks:
       - yelb-network
     deploy:
@@ -32,7 +32,7 @@ services:
       restart_policy:
         condition: on-failure
   yelb-db:
-    image: 'mreferre/yelb-db:0.6'
+    image: 'ghcr.io/alexgoller/illumio-yelb/yelb-db:latest'
     networks:
       - yelb-network
     deploy:

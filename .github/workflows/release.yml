@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: alexgoller/illumio-yelb
+
+jobs:
+  update-docker-compose:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update docker-compose with release tag
+      run: |
+        # Extract version from tag (remove 'v' prefix if present)
+        VERSION=${GITHUB_REF#refs/tags/v}
+        
+        # Update docker-compose-illumio.yml with the release tag
+        sed -i "s/:latest/:${VERSION}/g" deployments/localtest/docker-compose-illumio.yml
+        
+        echo "Updated docker-compose-illumio.yml with version: ${VERSION}"
+
+    - name: Commit updated docker-compose
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add deployments/localtest/docker-compose-illumio.yml
+        git commit -m "Update docker-compose-illumio.yml to use release ${GITHUB_REF#refs/tags/}"
+        git push
