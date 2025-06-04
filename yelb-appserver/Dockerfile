@@ -31,8 +31,15 @@ ADD startup.sh startup.sh
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.5.1 /lambda-adapter /lambda-adapter
 
 # Setup Lambda RIE + RIC
-RUN curl -L -o /usr/bin/lambda_rie https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/download/v1.9/aws-lambda-rie-x86_64
-RUN chmod +x /usr/bin/lambda_rie
+ARG TARGETARCH
+RUN if [ "$TARGETARCH" = "amd64" ]; then \
+        curl -L -o /usr/bin/lambda_rie https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/download/v1.9/aws-lambda-rie-x86_64; \
+    elif [ "$TARGETARCH" = "arm64" ]; then \
+        curl -L -o /usr/bin/lambda_rie https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/download/v1.9/aws-lambda-rie-arm64; \
+    else \
+        echo "Unsupported architecture: $TARGETARCH" && exit 1; \
+    fi && \
+    chmod +x /usr/bin/lambda_rie
 RUN gem install aws_lambda_ric
 
 ##################### INSTALLATION END #####################
