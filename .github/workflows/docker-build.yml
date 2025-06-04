@@ -106,7 +106,7 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         file: |
-          FROM redis:4.0.2
+          FROM redis:8.0.2
           LABEL org.opencontainers.image.source=https://github.com/${{ github.repository }}
           LABEL org.opencontainers.image.description="Redis server for Illumio Yelb demo"
           LABEL maintainer="Illumio"
