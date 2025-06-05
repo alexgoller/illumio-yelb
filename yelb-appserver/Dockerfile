@@ -20,11 +20,11 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+RUN gem install bundler --no-document
+RUN bundle install --deployment --without development test
 RUN gem install sinatra --no-document
-RUN gem install redis --no-document
-RUN gem install pg --no-document
 ### this installs the AWS SDK for DynamoDB (so that appserver can talk to DDB Vs the default Postgres/Redis)
-RUN gem install aws-sdk-dynamodb pg --no-document
+RUN gem install aws-sdk-dynamodb --no-document
 # Set the working directory to /
 WORKDIR /
 ADD startup.sh startup.sh
