@@ -1,7 +1,9 @@
 
 #### Why the Illumio fork of Yelb
 
-I forked this from mreffere and was gladly using it as one of my demo apps for showing Illumio on containers. I modified the application to have a Illumio style and builds local images hosted on ghcr.io.
+I forked this from (https://github.com/mreferre/yelb) mreffere and was gladly using it as one of my demo apps for showing Illumio on containers. I modified the application to have a Illumio style and builds local images hosted on ghcr.io. I removed this of the fork network as the upstream repo is orphaned and unmaintained.
+
+Please use this application for demo purposes only.
 
 ##### Original README here
 
