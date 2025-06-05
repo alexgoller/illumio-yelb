@@ -9,39 +9,163 @@
 
 // app.css
 
+// Brand Guidelines Implementation
+
+// Header
 .header {
-    background-color: #314351;
+  background-color: var(--color-primary);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+
+  .branding {
+    a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+
+      .title {
+        font-family: var(--font-primary);
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Layout
+.main-container {
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.content-container {
+  padding: var(--spacing-lg);
 }
 
 .center {
-    margin: 0 auto;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
-@media (min-width: 768px){
-    .center {
-        width: 75%;
-    }
-}
-
+// Typography
 .aligned-center {
-    text-align: center;
+  text-align: center;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  margin-bottom: var(--spacing-lg);
 }
 
 .aligned-left {
-    text-align: left;
-    margin-left: 12px;
-    margin-right: 12px;
+  text-align: left;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  margin: var(--spacing-md) 0;
 }
 
+// Cards
+.card {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-header {
+    background-color: var(--color-background);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .card-footer {
+    padding: var(--spacing-md);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Buttons
+.btn {
+  font-family: var(--font-primary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+
+  &.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+
+    &:hover {
+      background-color: darken(#FF6B6B, 10%);
+    }
+  }
+}
+
+// Lists
+.list-group-item {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: var(--font-secondary);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+
+// Spacing
 .spacer {
-    margin-top: 36px;
-    border-top: 1px solid #DDDDDD;
-    margin-bottom: 36px;
+  margin: var(--spacing-xl) 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .separator {
-    margin-top: 36px;
-    margin-bottom: 36px;
+  margin: var(--spacing-xl) 0;
+}
+
+// Responsive
+@media (min-width: 768px) {
+  .center {
+    width: 90%;
+  }
+}
+
+// Chart
+ngx-charts-advanced-pie-chart {
+  .advanced-pie-legend {
+    .legend-items-container {
+      .legend-items {
+        .legend-item {
+          .item-value {
+            font-family: var(--font-primary);
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
 }
 
 
