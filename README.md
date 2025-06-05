@@ -1,5 +1,5 @@
 
-#### Why the Illumio for of Yelb
+#### Why the Illumio fork of Yelb
 
 I forked this from mreffere and was gladly using it as one of my demo apps for showing Illumio on containers. I modified the application to have a Illumio style and builds local images hosted on ghcr.io.
 
