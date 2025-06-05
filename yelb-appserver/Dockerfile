@@ -7,7 +7,7 @@ MAINTAINER massimo@it20.info
 WORKDIR /app
 
 COPY *.rb ./
-COPY Gemfile Gemfile
+COPY Gemfile Gemfile.lock ./
 COPY modules modules
 
 ENV LANG=en_us.UTF-8
@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN gem install bundler --no-document
-RUN bundle install --deployment --without development test
+RUN bundle install
 RUN gem install sinatra --no-document
 ### this installs the AWS SDK for DynamoDB (so that appserver can talk to DDB Vs the default Postgres/Redis)
 RUN gem install aws-sdk-dynamodb --no-document
