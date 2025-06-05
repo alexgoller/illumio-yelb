@@ -16,6 +16,9 @@
   background-color: var(--color-primary);
   padding: var(--spacing-md);
   box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .branding {
     a {
@@ -30,6 +33,14 @@
         font-size: 1.5rem;
         font-weight: 600;
       }
+    }
+  }
+
+  .header-logo {
+    .logo {
+      height: 40px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
   }
 }
