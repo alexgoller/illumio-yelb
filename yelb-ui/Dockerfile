@@ -19,6 +19,8 @@ RUN cp /clarity-seed-newfiles/src/env.js /clarity-seed/src/env.js
 RUN cp /clarity-seed-newfiles/src/app/app* /clarity-seed/src/app
 RUN cp /clarity-seed-newfiles/src/app/env* /clarity-seed/src/app
 RUN cp /clarity-seed-newfiles/src/environments/env* /clarity-seed/src/environments
+RUN cp -r /clarity-seed-newfiles/src/images /clarity-seed/src/ 2>/dev/null || true
+RUN cp -r /clarity-seed-newfiles/src/assets /clarity-seed/src/ 2>/dev/null || true
 RUN cp /clarity-seed-newfiles/package.json /clarity-seed/package.json
 RUN cp /clarity-seed-newfiles/angular-cli.json /clarity-seed/.angular-cli.json
 RUN rm -r /clarity-seed/src/app/home
