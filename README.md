@@ -5,6 +5,15 @@ I forked this from (https://github.com/mreferre/yelb) mreffere and was gladly us
 
 Please use this application for demo purposes only.
 
+For standard EKS and AKS setups, please use [yelb-k8s-loadbalancer](deployments/platformdeployment/Kubernetes/yaml/yelb-k8s-loadbalancer) or [yelb-illumio-annotated](deployments/platformdeployment/Kubernetes/yaml/yelb-illumio-annotated.yaml) for Illumio annotated deployments.
+
+###### Illumio Labels set by the annotated version
+
+* role: db
+* role: processing
+* role: web
+* app: yelb
+
 ##### Original README here
 
 This was particularly true as I embarked with the challenge of learning different abstractions available in the cloud:
